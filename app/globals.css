@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .button {
-    @apply bg-primarycolor p-3 rounded-full flex justify-center
+    @apply bg-primarycolor p-3 rounded-full flex justify-center w-full
 }
