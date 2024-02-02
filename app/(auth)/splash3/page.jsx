@@ -14,7 +14,7 @@ function Splash3() {
           </div>
 
           <Image src={"/images/img3.png"} width={550} height={550} alt="img3" />
-          <Link href={"/signin1"} className="button">
+          <Link href={"/signup1"} className="button">
             Create Account
           </Link>
         </div>
