@@ -1,5 +1,6 @@
 import PrimaryButton from "@/components/PrimaryButton";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -14,7 +15,9 @@ export default function Home() {
 
         <h1 className="text-white text-6xl">Civight</h1>
 
-        <PrimaryButton label={"Get Started"} />
+        <Link href={"/splash1"} className="button">
+          Get Started
+        </Link>
       </div>
     </main>
   );
