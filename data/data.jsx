@@ -216,3 +216,29 @@ export const features = [
     ),
   },
 ];
+
+export const report = [
+  {
+    id: 1,
+    name: "FullStack Mechanic",
+    img: "",
+    time: "12:23",
+    report: "Fights Ongoing",
+  },
+  {
+    id: 2,
+    name: "Certified Comrade",
+    img: "",
+    time: "12:23",
+    report: "Fights Ongoing",
+  },
+  { id: 3, name: "D-Talent", img: "", time: "12:23", report: "Fights Ongoing" },
+  {
+    id: 4,
+    name: "FullStack Mechanic",
+    img: "",
+    time: "12:23",
+    report: "Fights Ongoing",
+  },
+  { id: 5, name: "D-Talent", img: "", time: "12:23", report: "Fights Ongoing" },
+];

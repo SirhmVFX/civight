@@ -5,7 +5,7 @@ function Features({ icon, name, link }) {
     <>
       <Link
         href={link}
-        className="bg-secondarycolor p-4 rounded-3xl flex flex-col items-center"
+        className="bg-secondarycolor p-4 rounded-3xl flex flex-col gap-2 items-center"
       >
         <div>{icon}</div>
         <p className="text-[11px] text-white text-center">{name}</p>
