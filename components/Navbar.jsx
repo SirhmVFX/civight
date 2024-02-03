@@ -1,7 +1,7 @@
 function Navbar() {
   return (
     <>
-      <div className="w-full bg-primarycolor py-10 px-16 bottom-0 fixed">
+      <div className="w-full bg-primarycolor p-8  bottom-0 fixed">
         <div className="flex items-center justify-between relative w-full">
           <div className="flex flex-col items-center">
             <svg
