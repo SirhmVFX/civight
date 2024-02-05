@@ -1,3 +1,4 @@
+import SecondaryButton from "@/components/SecondaryButton";
 import { CiCamera } from "react-icons/ci";
 
 function FacialRecognition() {
@@ -12,6 +13,10 @@ function FacialRecognition() {
           <div className="flex flex-col items-center gap-4">
             <h1>Facial Recognition</h1>
             <p>Scan a face to find a record</p>
+          </div>
+
+          <div className="mt-32 w-full">
+            <SecondaryButton label={"Scan"} />
           </div>
         </div>
       </section>
