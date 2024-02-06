@@ -1,6 +1,8 @@
-function PrimaryButton({ label }) {
+function PrimaryButton({ label, onclick, color }) {
   return (
-    <button className="bg-primarycolor rounded-full w-full p-4">{label}</button>
+    <button className={`${color}  rounded-full w-full p-4`} onClick={onclick}>
+      {label}
+    </button>
   );
 }
 

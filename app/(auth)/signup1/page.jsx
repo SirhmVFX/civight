@@ -3,10 +3,29 @@
 import PrimaryButton from "@/components/PrimaryButton";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 function SingIn1() {
-  const [fullname, setFullname] = useState("");
-  console.log(fullname);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({
+    fullname: "",
+    age: "",
+    gender: "",
+    stateOrigin: "",
+    stateResident: "",
+    cityResident: "",
+    country: "",
+  });
+
+  const handleSignin = (e) => {
+    setLoading(true);
+    e.preventDefault();
+    const userInfo = localStorage.setItem("user", JSON.stringify(user));
+    console.log(user);
+    router.push("/signup2");
+  };
+
   return (
     <>
       <section className="w-full h-screen p-8">
@@ -18,7 +37,7 @@ function SingIn1() {
           </p>
         </div>
 
-        <form>
+        <form onSubmit={handleSignin}>
           <div className="py-4">
             <label htmlFor="">Full Name *</label>
             <div className="flex gap-1 items-center p-4 rounded-full border bg-gray-100">
@@ -45,6 +64,8 @@ function SingIn1() {
               <input
                 type="text"
                 placeholder="Enter your fullname"
+                value={user.fullname}
+                onChange={(e) => setUser({ ...user, fullname: e.target.value })}
                 className="bg-transparent w-full outline-none"
               />
             </div>
@@ -75,6 +96,8 @@ function SingIn1() {
               </svg>
               <input
                 type="number"
+                value={user.age}
+                onChange={(e) => setUser({ ...user, age: e.target.value })}
                 placeholder="Enter your age"
                 className="bg-transparent w-full outline-none"
               />
@@ -106,6 +129,8 @@ function SingIn1() {
               </svg>
               <select
                 name="gender"
+                value={user.gender}
+                onChange={(e) => setUser({ ...user, gender: e.target.value })}
                 id=""
                 className="w-full bg-transparent outline-none"
               >
@@ -154,6 +179,10 @@ function SingIn1() {
               </svg>
               <input
                 type="text"
+                value={user.stateOrigin}
+                onChange={(e) =>
+                  setUser({ ...user, stateOrigin: e.target.value })
+                }
                 placeholder="Enter your state of origin"
                 className="bg-transparent w-full outline-none"
               />
@@ -197,6 +226,10 @@ function SingIn1() {
               </svg>
               <input
                 type="text"
+                value={user.stateResident}
+                onChange={(e) =>
+                  setUser({ ...user, stateResident: e.target.value })
+                }
                 placeholder="Enter the state you reside in"
                 className="bg-transparent w-full outline-none"
               />
@@ -240,6 +273,10 @@ function SingIn1() {
               </svg>
               <input
                 type="text"
+                value={user.cityResident}
+                onChange={(e) =>
+                  setUser({ ...user, cityResident: e.target.value })
+                }
                 placeholder="What city are you located in"
                 className="bg-transparent w-full outline-none"
               />
@@ -279,13 +316,19 @@ function SingIn1() {
               </svg>
               <input
                 type="text"
+                value={user.country}
+                onChange={(e) => setUser({ ...user, country: e.target.value })}
                 placeholder="Your Country"
                 className="bg-transparent w-full outline-none"
               />
             </div>
           </div>
 
-          <PrimaryButton label={"Next"} />
+          <PrimaryButton
+            label={`${loading ? "Please wait..." : "Next"} `}
+            color={`${loading ? "bg-primarycolorlight" : "bg-primarycolor"}`}
+            onclick={handleSignin}
+          />
         </form>
 
         <div className="flex gap-2 justify-center p-4">

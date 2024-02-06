@@ -1,9 +1,51 @@
+"use client";
+import {
+  collection,
+  query,
+  where,
+  getDoc,
+  addDoc,
+  setDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 import SecondaryButton from "@/components/SecondaryButton";
+import { useState } from "react";
+import { db } from "@/app/firebase/config";
 
 function SignUp3() {
+  const [file, setFile] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleSignup = async () => {
+    const userInfo = JSON.parse(localStorage.getItem("user"));
+    const userId = userInfo.email;
+
+    const docRef = doc(db, "users", userId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      setError(true);
+    } else {
+      await setDoc(doc(db, "users", userId), {
+        userInfo,
+        timeStamp: serverTimestamp(),
+        cvrId: "CVR" + new Date().getTime(),
+      });
+    }
+  };
+
   return (
     <>
       <section className="w-full h-screen p-8">
+        {error ? (
+          <div className="bg-red-500 p-4 rounded-lg">
+            <p className="text-white">This user already exist</p>
+          </div>
+        ) : (
+          ""
+        )}
+
         <div className="w-full md:w-3/4 mx-auto flex flex-col items-center gap-8 p-8">
           <div className=" border-2 p-36 rounded-full border-dashed ">
             <svg
@@ -31,9 +73,9 @@ function SignUp3() {
             </p>
           </div>
 
-          <input type="file" />
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
 
-          <SecondaryButton label={"Verify Account"} />
+          <SecondaryButton label={"Verify Account"} onclick={handleSignup} />
         </div>
       </section>
     </>
