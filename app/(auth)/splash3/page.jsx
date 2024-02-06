@@ -5,7 +5,7 @@ function Splash3() {
   return (
     <>
       <section className="w-full bg-secondarycolor h-screen p-8">
-        <div className="w-full md:3/4 mx-auto p-8 flex flex-col gap-20 ">
+        <div className="w-full md:3/4 mx-auto flex flex-col pt-14 gap-20 ">
           <div>
             <h1 className="text-7xl text-white">Manage & Secure Yourself</h1>
             <p className="text-white">
