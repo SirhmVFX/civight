@@ -10,19 +10,58 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import SecondaryButton from "@/components/SecondaryButton";
-import { useState } from "react";
-import { db, auth } from "@/app/firebase/config";
+import { useEffect, useState } from "react";
+import { db, auth, storage } from "@/app/firebase/config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 function SignUp3() {
   const [file, setFile] = useState("");
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const uploadFile = () => {
+      const filename = new Date().getTime() = file.name
+      const storageRef = ref(storage, filename);
+
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+// Register three observers:
+// 1. 'state_changed' observer, called any time the state changes
+// 2. Error observer, called on failure
+// 3. Completion observer, called on successful completion
+uploadTask.on('state_changed', 
+  (snapshot) => {
+    // Observe state change events such as progress, pause, and resume
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    switch (snapshot.state) {
+      case 'paused':
+        console.log('Upload is paused');
+        break;
+      case 'running':
+        console.log('Upload is running');
+        break;
+        default: 
+         break
+    }
+  }, 
+  (error) => {
+    // Handle unsuccessful uploads
+  }, 
+  () => {
+    // Handle successful uploads on complete
+    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      console.log('File available at', downloadURL);
+    });
+  }
+);
+    };
+
+    file && uploadFile;
+  }, [file]);
 
   const handleSignup = async () => {
     const userInfo = JSON.parse(localStorage.getItem("user"));
