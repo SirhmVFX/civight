@@ -11,7 +11,14 @@ import {
 } from "firebase/firestore";
 import SecondaryButton from "@/components/SecondaryButton";
 import { useState } from "react";
-import { db } from "@/app/firebase/config";
+import { db, auth } from "@/app/firebase/config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 function SignUp3() {
   const [file, setFile] = useState("");
@@ -27,6 +34,11 @@ function SignUp3() {
     if (docSnap.exists()) {
       setError(true);
     } else {
+      const res = await createUserWithEmailAndPassword(
+        auth,
+        userId,
+        userInfo.password
+      );
       await setDoc(doc(db, "users", userId), {
         userInfo,
         timeStamp: serverTimestamp(),
