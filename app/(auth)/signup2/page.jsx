@@ -37,11 +37,8 @@ function SignUp2() {
       <section className="w-full h-screen p-8">
         <div className="w-full md:w-2/4 mx-auto">
           <div>
-            <h1 className="text-4xl">Add text here</h1>
-            <p className="text-gray-300">
-              Create an account. It takes less than a minute. Enter your
-              credentials
-            </p>
+            <h1 className="text-4xl">We just need a few more details</h1>
+            <p className="text-gray-300">We won’t take your time</p>
           </div>
 
           <form onSubmit={handleSignin}>
