@@ -21,6 +21,7 @@ function SignUp3() {
   const [img, setImg] = useState(null);
   const [error, setError] = useState(false);
   const [isImg, setIsImg] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     const uploadFile = () => {
@@ -34,6 +35,7 @@ function SignUp3() {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setUploading(true);
           console.log("Upload is " + progress + "% done");
           switch (snapshot.state) {
             case "paused":
@@ -55,6 +57,7 @@ function SignUp3() {
             setImg(downloadURL);
             console.log("File available at", file);
             setIsImg(true);
+            setUploading(false);
           });
         }
       );
@@ -90,6 +93,13 @@ function SignUp3() {
   return (
     <>
       <section className="w-full h-screen p-8">
+        {uploading ? (
+          <div>
+            <p className="font-bold text-lg">Uploading Image please wait...</p>
+          </div>
+        ) : (
+          ""
+        )}
         {error ? (
           <div className="bg-red-500 p-4 rounded-lg">
             <p className="text-white">This user already exist</p>
@@ -100,7 +110,7 @@ function SignUp3() {
 
         <div className="w-full md:w-3/4 mx-auto flex flex-col items-center gap-8 ">
           <div className="flex flex-col items-center text-center gap-2 p-10">
-            <div className="w-[350px] h-[400px] mx-auto ">
+            <div className="w-[380px] h-[400px] mx-auto ">
               {isImg ? (
                 img && (
                   <div className="w-full h-full">
@@ -109,7 +119,7 @@ function SignUp3() {
                       width={1100}
                       height={1100}
                       alt="img"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-full"
                     />
                   </div>
                 )
