@@ -1,7 +1,7 @@
-function SecondaryButton({ label, onclick }) {
+function SecondaryButton({ label, onclick, color }) {
   return (
     <button
-      className="bg-secondarycolor text-white rounded-full w-full p-4"
+      className={`${color} text-white rounded-full w-full p-4`}
       onClick={onclick}
     >
       {label}

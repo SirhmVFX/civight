@@ -15,13 +15,15 @@ import { db, auth, storage } from "@/app/firebase/config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 function SignUp3() {
+  const router = useRouter();
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
   const [error, setError] = useState(false);
   const [isImg, setIsImg] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     const uploadFile = () => {
@@ -67,6 +69,7 @@ function SignUp3() {
   }, [file]);
 
   const handleSignup = async () => {
+    setClicked(true); // Assuming this sets some state related to a button click
     const userInfo = JSON.parse(localStorage.getItem("user"));
     const userId = userInfo.email;
 
@@ -74,19 +77,30 @@ function SignUp3() {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      setError(true);
+      setError(true); // Set an error if the user already exists
     } else {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        userId,
-        userInfo.password
-      );
-      await setDoc(doc(db, "users", userId), {
-        userInfo,
-        file,
-        timeStamp: serverTimestamp(),
-        cvrId: "CVR" + new Date().getTime(),
-      });
+      try {
+        // Create the user in Firebase Authentication
+        const res = await createUserWithEmailAndPassword(
+          auth,
+          userId,
+          userInfo.password
+        );
+
+        // If user creation is successful, save additional data to Firestore
+        await setDoc(doc(db, "users", userId), {
+          userInfo,
+          img,
+          timeStamp: serverTimestamp(),
+          cvrId: "CVR" + new Date().getTime(),
+        });
+
+        router.push("/signin"); // Redirect the user after successful signup
+      } catch (error) {
+        console.error("Error signing up:", error);
+        // Handle any errors that occur during user creation or data saving
+        setError(true); // Set an error state to inform the user
+      }
     }
   };
 
@@ -152,7 +166,15 @@ function SignUp3() {
 
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
 
-          <SecondaryButton label={"Verify Account"} onclick={handleSignup} />
+          <SecondaryButton
+            label={`${
+              clicked ? "Verifying account please wait..." : "Verify Account"
+            }`}
+            onclick={handleSignup}
+            color={`${
+              clicked ? "bg-secondarycolorlight" : "bg-secondarycolor"
+            }`}
+          />
         </div>
       </section>
     </>
