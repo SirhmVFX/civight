@@ -1,11 +1,66 @@
+"use client";
+
 import PrimaryButton from "@/components/PrimaryButton";
 import SecondaryButton from "@/components/SecondaryButton";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/app/firebase/config";
 
 function SignIn() {
+  const [user, setUser] = useState({
+    emailOrId: "",
+    password: "",
+  });
+
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const router = useRouter();
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    setClicked(true);
+    try {
+      const docRef = doc(db, "users", user.emailOrId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        console.log(userData);
+
+        if (userData.userInfo.password === user.password) {
+          setSuccess(true);
+          localStorage.setItem("currentUser", userData);
+          router.push(`${userData.cvrId}`);
+        }
+      } else {
+        setError(true);
+      }
+    } catch (error) {
+      console.log(error);
+      setError(true);
+    }
+  };
   return (
     <>
       <section className="w-full h-screen p-8">
+        {success ? (
+          <div className="p-4 rounded-lg bg-primarycolor m-4">
+            <p>Login Successfull</p>
+          </div>
+        ) : (
+          ""
+        )}
+        {error ? (
+          <div className="p-4 rounded-lg bg-red-500 m-4">
+            <p className="text-white">This user does not exist</p>
+          </div>
+        ) : (
+          ""
+        )}
+
         <div className="w-full md:w-2/3 mx-auto">
           <div>
             <h1 className="text-4xl">👋 Welcome Back </h1>
@@ -41,6 +96,10 @@ function SignIn() {
                 <input
                   type="text"
                   placeholder="Enter your email or CVR ID"
+                  value={user.emailOrId}
+                  onChange={(e) =>
+                    setUser({ ...user, emailOrId: e.target.value })
+                  }
                   className="bg-transparent w-full outline-none"
                 />
               </div>
@@ -72,12 +131,20 @@ function SignIn() {
                 <input
                   type="password"
                   placeholder="Enter your password"
+                  value={user.password}
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
                   className="bg-transparent w-full outline-none"
                 />
               </div>
             </div>
 
-            <PrimaryButton label={"Log In"} />
+            <PrimaryButton
+              label={`${clicked ? "Logging you in, please wait..." : "Log In"}`}
+              onclick={handleSignIn}
+              color={`${clicked ? "bg-primarycolorlight" : "bg-primarycolor"}`}
+            />
           </form>
           <div className="flex p-8 justify-center mb-10">
             <Link href={"/forgotpassword"} className="font-bold">

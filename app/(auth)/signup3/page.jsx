@@ -95,7 +95,8 @@ function SignUp3() {
           cvrId: "CVR" + new Date().getTime(),
         });
 
-        router.push("/accountcreated"); // Redirect the user after successful signup
+        router.push("/accountcreated");
+        localStorage.clear(); // Redirect the user after successful signup
       } catch (error) {
         console.error("Error signing up:", error);
         // Handle any errors that occur during user creation or data saving

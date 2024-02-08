@@ -1,7 +1,13 @@
+"use client";
 import PrimaryButton from "@/components/PrimaryButton";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 function AccountCreated() {
+  const router = useRouter();
+
+  const signIn = () => {
+    router.push("/signin");
+  };
   return (
     <>
       <section className="bg-secondarycolor w-full h-screen p-8 flex items-center">
@@ -24,7 +30,11 @@ function AccountCreated() {
             </div>
           </div>
 
-          <PrimaryButton label={"Log In"} color={"bg-primarycolor"} />
+          <PrimaryButton
+            label={"Log In"}
+            color={"bg-primarycolor"}
+            onclick={signIn}
+          />
         </div>
       </section>
     </>
