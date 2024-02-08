@@ -32,8 +32,10 @@ function SignIn() {
 
         if (userData.userInfo.password === user.password) {
           setSuccess(true);
-          localStorage.setItem("currentUser", userData);
-          router.push(`${userData.cvrId}`);
+          localStorage.setItem("currentUser", JSON.stringify(userData));
+          router.push(`${userData.cvrId}/discover`);
+        } else {
+          setError(true);
         }
       } else {
         setError(true);
@@ -42,6 +44,10 @@ function SignIn() {
       console.log(error);
       setError(true);
     }
+  };
+
+  const signUp = () => {
+    router.push("/signup1");
   };
   return (
     <>
@@ -158,7 +164,11 @@ function SignIn() {
             <div className="w-1/4 h-1 bg-gray-200"></div>
           </div>
 
-          <SecondaryButton label={"Create an Account"} />
+          <SecondaryButton
+            label={"Create an Account"}
+            color={"bg-secondarycolor"}
+            onclick={signUp}
+          />
         </div>
       </section>
     </>
