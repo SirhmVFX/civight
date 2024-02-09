@@ -20,11 +20,13 @@ function PanicButton({ params }) {
                 width={200}
                 height={200}
                 alt="loadin"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <h1 className="text-4xl font-bold">Active...</h1>
-            <p>Waiting for your response</p>
+            <h1 className="text-2xl font-bold text-center">
+              Panic Button <br /> is active...
+            </h1>
+            <p>Waiting for your response...</p>
           </div>
         </div>
 

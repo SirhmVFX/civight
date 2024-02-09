@@ -54,7 +54,7 @@ function Navbar() {
 
           <Link
             href={`/${user?.cvrId}/panicbutton`}
-            className="bg-secondarycolor p-8 w-[150px] absolute bottom-0 right-0 left-0 mx-auto h-[150px] border-8 border-white rounded-full flex flex-col items-center "
+            className="bg-secondarycolor p-1 w-[120px] absolute bottom-0 right-0 left-0 mx-auto h-[120px] border-8 border-white rounded-full flex flex-col items-center justify-center "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@ function Navbar() {
               />
             </svg>
 
-            <p className="font-bold text-center text-white">
+            <p className="font-bold text-center text-[11px] text-white">
               Panic <br /> Button
             </p>
           </Link>
