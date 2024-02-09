@@ -1,4 +1,32 @@
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { db } from "@/app/firebase/config";
+import { doc, getDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
+
 function Navbar() {
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const docRef = doc(db, "users", currentUser.userInfo.email);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const user = docSnap.data();
+        console.log(user);
+        setUser(user);
+      } else {
+        router.push("/signin");
+      }
+    };
+
+    fetchDetails();
+  }, []);
   return (
     <>
       <div className="w-full bg-primarycolor p-8  bottom-0 fixed">
@@ -24,7 +52,10 @@ function Navbar() {
             <p>Home</p>
           </div>
 
-          <div className="bg-secondarycolor p-8 w-[150px] absolute bottom-0 right-0 left-0 mx-auto h-[150px] border-8 border-white rounded-full flex flex-col items-center ">
+          <Link
+            href={`/${user?.cvrId}/panicbutton`}
+            className="bg-secondarycolor p-8 w-[150px] absolute bottom-0 right-0 left-0 mx-auto h-[150px] border-8 border-white rounded-full flex flex-col items-center "
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="21"
@@ -53,7 +84,7 @@ function Navbar() {
             <p className="font-bold text-center text-white">
               Panic <br /> Button
             </p>
-          </div>
+          </Link>
 
           <div className="flex flex-col items-center">
             <svg
