@@ -30,8 +30,11 @@ function Navbar() {
   return (
     <>
       <div className="w-full bg-primarycolor p-8  bottom-0 fixed">
-        <div className="flex items-center justify-between relative w-full">
-          <div className="flex flex-col items-center">
+        <div className="flex items-center justify-between px-4 relative w-full">
+          <Link
+            href={`/${user?.cvrId}/discover`}
+            className="flex flex-col items-center"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -50,7 +53,7 @@ function Navbar() {
             </svg>
 
             <p>Home</p>
-          </div>
+          </Link>
 
           <Link
             href={`/${user?.cvrId}/panicbutton`}
@@ -86,7 +89,10 @@ function Navbar() {
             </p>
           </Link>
 
-          <div className="flex flex-col items-center">
+          <Link
+            href={`/${user?.cvrId}/profile`}
+            className="flex flex-col items-center"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="21"
@@ -109,7 +115,7 @@ function Navbar() {
             </svg>
 
             <p>Profile</p>
-          </div>
+          </Link>
         </div>
       </div>
     </>
