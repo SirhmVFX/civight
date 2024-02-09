@@ -8,7 +8,7 @@ function Features({ icon, name, link }) {
         className="bg-secondarycolor p-4 rounded-3xl flex flex-col gap-2 items-center"
       >
         <div>{icon}</div>
-        <p className="text-[11px] text-white text-center">{name}</p>
+        <p className="text-[10px] text-white text-center">{name}</p>
       </Link>
     </>
   );

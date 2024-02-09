@@ -1,6 +1,32 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { db } from "@/app/firebase/config";
+import { doc, getDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
-function ProfileHeader() {
+function ProfileHeader({ userId }) {
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const docRef = doc(db, "users", currentUser.userInfo.email);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const user = docSnap.data();
+        console.log(user);
+        setUser(user);
+      } else {
+        router.push("/signin");
+      }
+    };
+
+    fetchDetails();
+  }, []);
+
   return (
     <>
       <div className="flex justify-between mb-4">
@@ -13,8 +39,8 @@ function ProfileHeader() {
             className="rounded-full"
           />
           <div>
-            <h1 className="font-bold">Hi👋, FullStack Mechanic</h1>
-            <p className="text-gray-300 text-sm">CVR102946128848276</p>
+            <h1 className="font-bold">Hi👋, {user?.userInfo?.fullname}</h1>
+            <p className="text-gray-300 text-sm">{user?.cvrId}</p>
           </div>
         </div>
 

@@ -28,7 +28,6 @@ function SignIn() {
 
       if (docSnap.exists()) {
         const userData = docSnap.data();
-        console.log(userData);
 
         if (userData.userInfo.password === user.password) {
           setSuccess(true);

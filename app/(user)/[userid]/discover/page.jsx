@@ -4,16 +4,18 @@ import Features from "@/components/Features";
 import Report from "@/components/Report";
 import ProfileHeader from "@/components/Profileheader";
 
-function Discover() {
+function Discover({ params }) {
+  const cvrId = params.userid;
+
   return (
     <>
       <section className="w-full h-screen ">
         <div className="p-8">
-          <ProfileHeader />
+          <ProfileHeader userId={cvrId} />
 
           <div className="bg-primarycolor w-full h-[200px] rounded-2xl"></div>
 
-          <div className="grid grid-cols-4 gap-4 py-4">
+          <div className="grid grid-cols-4 gap-2 py-4">
             {features.map((feature) => (
               <Features {...feature} key={feature.id} />
             ))}
