@@ -13,7 +13,7 @@ function Discover({ params }) {
         <div className="p-8">
           <ProfileHeader userId={cvrId} />
 
-          <div className="bg-primarycolor w-full h-[200px] rounded-2xl"></div>
+          <div className="bg-primarycolor w-full h-[150px] rounded-2xl"></div>
 
           <div className="grid grid-cols-4 gap-2 py-4">
             {features.map((feature) => (
@@ -28,6 +28,7 @@ function Discover({ params }) {
           {report.map((repo) => (
             <Report {...repo} key={repo.id} />
           ))}
+          <div className="p-10">1</div>
         </div>
       </section>
     </>

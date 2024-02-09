@@ -2,7 +2,7 @@ export const features = [
   {
     id: 1,
     name: "Geofencing alert",
-    link: "#",
+    link: "geofencingalert",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ export const features = [
   {
     id: 2,
     name: "Report Incident",
-    link: "#",
+    link: "reportincident",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ export const features = [
   {
     id: 3,
     name: "Share Location",
-    link: "#",
+    link: "sharelocation",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@ export const features = [
   {
     id: 4,
     name: "Anon Tip Submission",
-    link: "#",
+    link: "anonymoustip",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +110,7 @@ export const features = [
   {
     id: 5,
     name: "Facial Recognition",
-    link: "#",
+    link: "facialrecognition",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +199,7 @@ export const features = [
   {
     id: 8,
     name: "Enforcement Database",
-    link: "#",
+    link: "databaserecords",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
