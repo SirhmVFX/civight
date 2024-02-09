@@ -40,7 +40,7 @@ function ProfileHeader({ userId }) {
           />
           <div>
             <h1 className="font-bold">Hi👋, {user?.userInfo?.fullname}</h1>
-            <p className="text-gray-300 text-sm">{user?.cvrId}</p>
+            <p className="text-gray-400 text-sm">{user?.cvrId}</p>
           </div>
         </div>
 

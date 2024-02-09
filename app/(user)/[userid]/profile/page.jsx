@@ -1,7 +1,34 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { db } from "@/app/firebase/config";
+import { doc, getDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
-function Profile() {
+function Profile({ params }) {
+  const userId = params.userid;
+
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const docRef = doc(db, "users", currentUser.userInfo.email);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const user = docSnap.data();
+        console.log(user);
+        setUser(user);
+      } else {
+        router.push("/signin");
+      }
+    };
+
+    fetchDetails();
+  }, []);
   return (
     <>
       <section className=" w-full h-screen p-8">
@@ -10,7 +37,7 @@ function Profile() {
         <div className="flex h-1/3 py-4 items-center gap-3 ">
           <div className="h-full w-1/2 bg-black border-2 border-primarycolor">
             <Image
-              src={"/images/record.jpg"}
+              src={user.img}
               width={400}
               height={400}
               alt="profi"
@@ -21,20 +48,22 @@ function Profile() {
           <div className="flex flex-col gap-4">
             <div>
               <p className="text-sm">Fullname</p>
-              <h1 className="text-gray-300 text-md font-bold">
-                Fullstack Mechanic
+              <h1 className="text-gray-400 text-md font-bold">
+                {user.userInfo.fullname}
               </h1>
             </div>
 
             <div>
               <p className="text-sm">Phone Number</p>
-              <h1 className="text-gray-300 text-md font-bold">09034980910</h1>
+              <h1 className="text-gray-400 text-md font-bold">
+                {user.userInfo.phone}
+              </h1>
             </div>
 
             <div>
               <p className="text-sm">Email Address</p>
-              <h1 className="text-gray-300 text-md font-bold">
-                sirhmvfx@gmail.com
+              <h1 className="text-gray-400 text-md font-bold">
+                {user.userInfo.email}
               </h1>
             </div>
           </div>

@@ -13,20 +13,20 @@ function PanicButton({ params }) {
         </div>
 
         <div className="border rounded-full p-2 border-primarycolor mt-8">
-          <div className="border w-[300px] h-[300px] rounded-full flex flex-col items-center justify-center">
+          <div className="border w-[250px] h-[250px] rounded-full flex flex-col items-center justify-center">
             <div className="w-full h-1/4">
               <Image
                 src={"/images/loading.gif"}
-                width={200}
-                height={200}
+                width={1200}
+                height={1200}
                 alt="loadin"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <h1 className="text-2xl font-bold text-center">
-              Panic Button <br /> is active...
-            </h1>
-            <p>Waiting for your response...</p>
+            <h1 className="text-xl font-bold text-center">Is Active...</h1>
+            <p className="text-center">
+              Waiting for <br /> your response...
+            </p>
           </div>
         </div>
 
