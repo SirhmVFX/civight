@@ -72,9 +72,10 @@ function ReportIncident({ params }) {
     setSending(true);
 
     try {
-      await setDoc(doc(db, "incidents", userId), {
+      await setDoc(doc(db, "incidents"), {
         incidentDetails,
         image,
+        userId,
         timeStamp: serverTimestamp(),
       });
       console.log("Document written with ID: ");
@@ -188,6 +189,7 @@ function ReportIncident({ params }) {
                 id=""
                 cols="30"
                 rows="10"
+                value={incidentDetails.desc}
                 onChange={(e) =>
                   setIncidentDetails({
                     ...incidentDetails,
