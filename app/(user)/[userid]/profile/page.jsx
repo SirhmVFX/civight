@@ -37,7 +37,7 @@ function Profile({ params }) {
         <div className="flex h-1/3 py-4 items-center gap-3 ">
           <div className="h-full w-1/2 bg-black border-2 border-primarycolor">
             <Image
-              src={user.img}
+              src={user?.img}
               width={400}
               height={400}
               alt="profi"
@@ -49,21 +49,21 @@ function Profile({ params }) {
             <div>
               <p className="text-sm">Fullname</p>
               <h1 className="text-gray-400 text-md font-bold">
-                {user.userInfo.fullname}
+                {user?.userInfo.fullname}
               </h1>
             </div>
 
             <div>
               <p className="text-sm">Phone Number</p>
               <h1 className="text-gray-400 text-md font-bold">
-                {user.userInfo.phone}
+                {user?.userInfo.phone}
               </h1>
             </div>
 
             <div>
               <p className="text-sm">Email Address</p>
               <h1 className="text-gray-400 text-md font-bold">
-                {user.userInfo.email}
+                {user?.userInfo.email}
               </h1>
             </div>
           </div>
