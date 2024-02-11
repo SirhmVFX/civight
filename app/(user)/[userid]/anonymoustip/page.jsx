@@ -1,8 +1,33 @@
 "use client";
 import Image from "next/image";
 import PrimaryButton from "@/components/PrimaryButton";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { db } from "@/app/firebase/config";
 
 function AnonymousTip() {
+  const router = useRouter();
+  const [annonReport, setanonReport] = useState({
+    city: "",
+    location: "",
+    condition: "",
+    desc: "",
+  });
+
+  const [file, setFile] = useState(null);
+  const [image, setImage] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const sendAnonReport = async (e) => {
+    e.preventDefault();
+
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <section className="bg-secondarycolor w-full h-full p-8">
