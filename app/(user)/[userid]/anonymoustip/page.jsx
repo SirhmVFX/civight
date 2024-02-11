@@ -3,8 +3,14 @@ import Image from "next/image";
 import PrimaryButton from "@/components/PrimaryButton";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { db } from "@/app/firebase/config";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { db, storage } from "@/app/firebase/config";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import {
   getStorage,
   ref,
@@ -36,6 +42,7 @@ function AnonymousTip() {
       uploadTask.on(
         "state_changed",
         (snapshot) => {
+          setUploading(true);
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
@@ -52,10 +59,10 @@ function AnonymousTip() {
           console.log(error);
         },
         () => {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log("File available at", downloadURL);
+            setImage(downloadURL);
+            setUploading(false);
           });
         }
       );
@@ -66,16 +73,20 @@ function AnonymousTip() {
 
   const sendAnonReport = async (e) => {
     e.preventDefault();
+    setSending(true);
 
     try {
-      await setDoc(doc(db, "incidents"), {
+      await addDoc(collection(db, "incidents"), {
         annonReport,
         image,
         who: "Anon",
         timeStamp: serverTimestamp(),
       });
+
+      router.push(`anonsent`);
     } catch (error) {
       console.log(error);
+      setError(false);
     }
   };
 
@@ -140,7 +151,15 @@ function AnonymousTip() {
               </svg>
             </div>
           </div>
-
+          {error ? (
+            <div className="p-4 bg-red-500">
+              <p className="text-white">
+                Unable to send report please try again
+              </p>
+            </div>
+          ) : (
+            ""
+          )}
           <h1 className="text-3xl text-primarycolor">
             Annonymous Tip Submission
           </h1>
@@ -236,6 +255,14 @@ function AnonymousTip() {
                 />
               </div>
             </div>
+
+            {uploading ? (
+              <p className="text-lg text-red-600">
+                Uploading image please wait....
+              </p>
+            ) : (
+              ""
+            )}
 
             <PrimaryButton
               label={`${
