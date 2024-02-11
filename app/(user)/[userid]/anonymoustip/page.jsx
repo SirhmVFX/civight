@@ -4,6 +4,13 @@ import PrimaryButton from "@/components/PrimaryButton";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { db } from "@/app/firebase/config";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 function AnonymousTip() {
   const router = useRouter();
@@ -18,11 +25,23 @@ function AnonymousTip() {
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
+  const [sending, setSending] = useState(false);
+
+  useEffect(() => {
+    const uploadImage = () => {};
+
+    file && uploadImage();
+  }, [file]);
 
   const sendAnonReport = async (e) => {
     e.preventDefault();
 
     try {
+      await setDoc(doc(db, "incidents"), {
+        annonReport,
+        who: "Anon",
+        timeStamp: serverTimestamp(),
+      });
     } catch (error) {
       console.log(error);
     }
@@ -97,25 +116,16 @@ function AnonymousTip() {
           <form>
             <div className="py-4">
               <label className="text-primarycolor" htmlFor="">
-                Your Name *
-              </label>
-              <div className="flex gap-1 items-center p-4 rounded-full border bg-gray-100">
-                <input
-                  type="text"
-                  placeholder="Enter your fullname"
-                  className="bg-transparent w-full outline-none"
-                />
-              </div>
-            </div>
-
-            <div className="py-4">
-              <label className="text-primarycolor" htmlFor="">
                 What City is it happening *
               </label>
               <div className="flex gap-1 items-center p-4 rounded-full border bg-gray-100">
                 <input
                   type="text"
                   placeholder="Enter city name"
+                  value={annonReport.city}
+                  onChange={(e) =>
+                    setanonReport({ ...annonReport, city: e.target.value })
+                  }
                   className="bg-transparent w-full outline-none"
                 />
               </div>
@@ -129,6 +139,10 @@ function AnonymousTip() {
                 <input
                   type="text"
                   placeholder="Little area description"
+                  value={annonReport.location}
+                  onChange={(e) =>
+                    setanonReport({ ...annonReport, location: e.target.value })
+                  }
                   className="bg-transparent w-full outline-none"
                 />
               </div>
@@ -140,8 +154,11 @@ function AnonymousTip() {
               </label>
               <div className="flex gap-1 items-center p-4 rounded-full border bg-gray-100">
                 <select
-                  name="incident_situation"
+                  name="condition"
                   id=""
+                  onChange={(e) =>
+                    setanonReport({ ...annonReport, condition: e.target.value })
+                  }
                   className="bg-transparent outline-none"
                 >
                   <option value="Severe">Severe</option>
@@ -164,6 +181,10 @@ function AnonymousTip() {
                   id=""
                   cols="30"
                   rows="10"
+                  value={annonReport.desc}
+                  onChange={(e) =>
+                    setanonReport({ ...annonReport, desc: e.target.value })
+                  }
                   placeholder="Additional information"
                   className="bg-transparent w-full outline-none"
                 ></textarea>
@@ -178,15 +199,22 @@ function AnonymousTip() {
                 <input
                   type="file"
                   placeholder=""
+                  onChange={(e) => setFile(e.target.files[0])}
                   className="bg-transparent w-full outline-none"
                 />
               </div>
             </div>
 
-            <PrimaryButton label={"Send anon message"} />
+            <PrimaryButton
+              label={`${
+                sending ? "Sending anon message..." : "Send anon message"
+              }`}
+              color={`${sending ? "bg-primarycolorlight" : "bg-primarycolor"}`}
+              onclick={sendAnonReport}
+            />
           </form>
 
-          <div className="p-24">1</div>
+          <div className="p-20">1</div>
         </div>
       </section>
     </>

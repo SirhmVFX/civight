@@ -75,7 +75,7 @@ function ReportIncident({ params }) {
       await setDoc(doc(db, "incidents"), {
         incidentDetails,
         image,
-        userId,
+        who: userId,
         timeStamp: serverTimestamp(),
       });
       console.log("Document written with ID: ");
