@@ -28,7 +28,10 @@ function AnonymousTip() {
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    const uploadImage = () => {};
+    const uploadImage = () => {
+      const filename = new Date().getTime() + file.name;
+      const storageRef = ref(storage, filename);
+    };
 
     file && uploadImage();
   }, [file]);
@@ -39,6 +42,7 @@ function AnonymousTip() {
     try {
       await setDoc(doc(db, "incidents"), {
         annonReport,
+        image,
         who: "Anon",
         timeStamp: serverTimestamp(),
       });
