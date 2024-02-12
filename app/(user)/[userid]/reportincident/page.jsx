@@ -3,7 +3,13 @@
 import PrimaryButton from "@/components/PrimaryButton";
 import ProfileHeader from "@/components/Profileheader";
 import { useEffect, useState } from "react";
-import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import {
+  setDoc,
+  doc,
+  serverTimestamp,
+  addDoc,
+  collection,
+} from "firebase/firestore";
 import {
   getStorage,
   ref,
@@ -72,11 +78,12 @@ function ReportIncident({ params }) {
     setSending(true);
 
     try {
-      await setDoc(doc(db, "incidents"), {
+      await addDoc(collection(db, "incidents"), {
         incidentDetails,
         image,
         who: userId,
         timeStamp: serverTimestamp(),
+        time: new Date().getTime(),
       });
       console.log("Document written with ID: ");
       router.push(`incidentsent`);

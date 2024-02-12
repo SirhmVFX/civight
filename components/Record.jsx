@@ -1,21 +1,24 @@
 import Image from "next/image";
 
-function Record() {
+function Record({ image, userInfo }) {
   return (
     <>
       <div className="p-3 border-t border-b flex items-center ">
         <div className="w-2/4">
           <div className="flex gap-2 items-center ">
-            <Image
-              src={"/images/profile.png"}
-              height={40}
-              width={40}
-              alt="img"
-            />
+            <div className="w-[40px] h-[40px]">
+              <Image
+                src={image}
+                height={40}
+                width={40}
+                alt="img"
+                className="w-full h-full object-cover rounded-full"
+              />
+            </div>
 
             <div>
-              <h1 className="text-sm">Theressa Webb</h1>
-              <p className="text-[11px] text-gray-300">kenzi.lawson@ex...</p>
+              <h1 className="text-sm">{userInfo.fullname}</h1>
+              <p className="text-[11px] text-gray-500">{userInfo.email}</p>
             </div>
           </div>
         </div>

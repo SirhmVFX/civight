@@ -212,6 +212,7 @@ function AnonymousTip() {
                   }
                   className="bg-transparent outline-none"
                 >
+                  <option value="nill">Select</option>
                   <option value="Severe">Severe</option>
                   <option value="Fair">Fair</option>
                   <option value="Terrible">Terrible</option>

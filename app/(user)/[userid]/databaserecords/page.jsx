@@ -1,8 +1,38 @@
+"use client";
 import ProfileHeader from "@/components/Profileheader";
 import Record from "@/components/Record";
 import Image from "next/image";
 
+import { useState, useEffect } from "react";
+import { db } from "@/app/firebase/config";
+import { collection, getDocs } from "firebase/firestore";
+
 function DatabaseRecords() {
+  const [data, setData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const getData = async () => {
+      let incidents = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        querySnapshot.forEach((doc) => {
+          incidents.push(doc.data());
+          console.log(doc.id, " => ", doc.data());
+        });
+        setData(incidents);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  }, []);
+
+  console.log(data);
+  const filteredData = data.filter((item) =>
+    item.userInfo.fullname.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <>
       <section className="w-full h-screen p-8 bg-gray-100">
@@ -22,6 +52,8 @@ function DatabaseRecords() {
                 type="text"
                 placeholder="search"
                 className="bg-transparent outline-none w-full"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
 
@@ -53,16 +85,9 @@ function DatabaseRecords() {
               </div>
             </div>
 
-            <Record />
-            <Record />
-            <Record />
-            <Record />
-            <Record />
-            <Record />
-            <Record />
-            <Record />
-            <Record />
-            <Record />
+            {filteredData.map((d) => (
+              <Record key={d.id} userInfo={d.userInfo} image={d.img} />
+            ))}
           </div>
         </div>
 
