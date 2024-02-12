@@ -1,6 +1,36 @@
-import Image from "next/image";
+"use client";
 
-function RecordId() {
+import Image from "next/image";
+import { db } from "@/app/firebase/config";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+
+function RecordId({ params }) {
+  const civilian = params.recordid;
+  console.log(civilian);
+
+  const [userData, setUserdata] = useState("");
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const q = query(
+          collection(db, "users"),
+          where("cvrId", "==", civilian)
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          console.log(doc.id, " => ", doc.data());
+          setUserdata(doc.data());
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <>
       <section className="w-full h-screen">
@@ -68,7 +98,7 @@ function RecordId() {
           </div>
           <div className="w-2/4 bg-white h-3/4 absolute -bottom-20 rounded-lg right-0 left-0 mx-auto ">
             <Image
-              src={"/images/record.jpg"}
+              src={userData.img}
               width={400}
               height={400}
               alt="record"
@@ -80,61 +110,61 @@ function RecordId() {
         <div className="w-full md:w-2/3 p-10">
           <div className=" pt-14">
             <p className="text-sm">Fullname</p>
-            <h1 className="text-gray-300 text-lg font-bold">
-              FullStack Mechanic
+            <h1 className="text-gray-500 text-lg font-bold">
+              {userData.userInfo.fullname}
             </h1>
           </div>
 
           <div className="flex justify-between mt-4">
             <div>
               <p className="text-sm">Gender</p>
-              <h1 className="text-gray-300 text-lg font-bold">Male</h1>
+              <h1 className="text-gray-500 text-lg font-bold">Male</h1>
             </div>
 
             <div>
               <p className="text-sm">Age</p>
-              <h1 className="text-gray-300 text-lg font-bold">22</h1>
+              <h1 className="text-gray-500 text-lg font-bold">22</h1>
             </div>
 
             <div>
               <p className="text-sm">Marital Status</p>
-              <h1 className="text-gray-300 text-lg font-bold">Married</h1>
+              <h1 className="text-gray-500 text-lg font-bold">Married</h1>
             </div>
           </div>
 
           <div className="flex gap-8 mt-4">
             <div>
               <p className="text-sm">State of Origin</p>
-              <h1 className="text-gray-300 text-lg font-bold">Lagos</h1>
+              <h1 className="text-gray-500 text-lg font-bold">Lagos</h1>
             </div>
 
             <div>
               <p className="text-sm">Phone Number</p>
-              <h1 className="text-gray-300 text-lg font-bold">09034980910</h1>
+              <h1 className="text-gray-500 text-lg font-bold">09034980910</h1>
             </div>
           </div>
 
           <div className="flex justify-between mt-4">
             <div>
               <p className="text-sm">Location</p>
-              <h1 className="text-gray-300 text-lg font-bold">Akute</h1>
+              <h1 className="text-gray-500 text-lg font-bold">Akute</h1>
             </div>
 
             <div>
               <p className="text-sm">City</p>
-              <h1 className="text-gray-300 text-lg font-bold">Denro</h1>
+              <h1 className="text-gray-500 text-lg font-bold">Denro</h1>
             </div>
 
             <div>
               <p className="text-sm">Country</p>
-              <h1 className="text-gray-300 text-lg font-bold">Nigeria</h1>
+              <h1 className="text-gray-500 text-lg font-bold">Nigeria</h1>
             </div>
           </div>
 
           <div className="flex justify-between mt-4">
             <div>
               <p className="text-sm">Email Address</p>
-              <h1 className="text-gray-300 text-lg font-bold">
+              <h1 className="text-gray-500 text-lg font-bold">
                 sirhmvfx@gmail.com
               </h1>
             </div>
@@ -143,7 +173,7 @@ function RecordId() {
           <div className="flex justify-between mt-4">
             <div>
               <p className="text-3xl font-bold text-primarycolor">CVR ID</p>
-              <h1 className="text-gray-300 text-3xl font-bold">
+              <h1 className="text-gray-500 text-3xl font-bold">
                 CVR102946128848276
               </h1>
             </div>

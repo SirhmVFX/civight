@@ -1,9 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 
-function Record({ image, userInfo }) {
+function Record({ link, image, userInfo }) {
   return (
     <>
-      <div className="p-3 border-t border-b flex items-center ">
+      <Link
+        href={`databaserecords/${link}`}
+        className="p-3 border-t border-b flex items-center "
+      >
         <div className="w-2/4">
           <div className="flex gap-2 items-center ">
             <div className="w-[40px] h-[40px]">
@@ -30,7 +34,7 @@ function Record({ image, userInfo }) {
         <div className="py-1 px-3 bg-green-100 flex justify-center rounded-full w-1/4">
           <h1 className="text-sm text-green-600">Active</h1>
         </div>
-      </div>
+      </Link>
     </>
   );
 }

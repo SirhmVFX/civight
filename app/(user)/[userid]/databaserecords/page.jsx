@@ -86,7 +86,12 @@ function DatabaseRecords() {
             </div>
 
             {filteredData.map((d) => (
-              <Record key={d.id} userInfo={d.userInfo} image={d.img} />
+              <Record
+                key={d.cvrId}
+                link={d.cvrId}
+                userInfo={d.userInfo}
+                image={d.img}
+              />
             ))}
           </div>
         </div>
