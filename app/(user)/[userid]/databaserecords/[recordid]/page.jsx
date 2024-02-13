@@ -97,16 +97,16 @@ function RecordId({ params }) {
             <h1 className="text-primarycolor">Database Record</h1>
           </div>
           <div className="w-2/4 bg-white h-3/4 absolute -bottom-20 rounded-lg right-0 left-0 mx-auto ">
-            <div className="w-full h-full bg-black opacity-85 z-50 absolute backdrop-blur-lg">
-              1
+            <div className="w-full h-full relative">
+              <div className="w-full h-full absolute bg-[#0000005e] backdrop-blur-lg rounded-lg"></div>
+              <Image
+                src={userData.img}
+                width={400}
+                height={400}
+                alt="record"
+                className="w-full h-full object-cover border-4 rounded-lg border-primarycolor"
+              />
             </div>
-            <Image
-              src={userData.img}
-              width={400}
-              height={400}
-              alt="record"
-              className="w-full h-full object-cover border-4 rounded-lg border-primarycolor filter blur-lg "
-            />
           </div>
         </div>
 
@@ -170,7 +170,10 @@ function RecordId({ params }) {
             <div>
               <p className="text-sm">Email Address</p>
               <h1 className="text-gray-500 text-lg font-bold">
-                {userData?.userInfo?.email}
+                {userData?.userInfo?.email &&
+                  `***${userData.userInfo.email.slice(
+                    userData.userInfo.email.lastIndexOf("@") - 2
+                  )}`}
               </h1>
             </div>
           </div>
@@ -179,7 +182,10 @@ function RecordId({ params }) {
             <div>
               <p className="text-3xl font-bold text-primarycolor">CVR ID</p>
               <h1 className="text-gray-500 text-3xl font-bold">
-                CVR102946128848276
+                {userData.cvrId &&
+                  `${userData.cvrId.slice(0, 3)}*********${userData.cvrId.slice(
+                    -4
+                  )}`}
               </h1>
             </div>
           </div>
