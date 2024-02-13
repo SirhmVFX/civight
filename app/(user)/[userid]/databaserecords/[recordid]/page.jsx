@@ -97,12 +97,15 @@ function RecordId({ params }) {
             <h1 className="text-primarycolor">Database Record</h1>
           </div>
           <div className="w-2/4 bg-white h-3/4 absolute -bottom-20 rounded-lg right-0 left-0 mx-auto ">
+            <div className="w-full h-full bg-black opacity-85 z-50 absolute backdrop-blur-lg">
+              1
+            </div>
             <Image
               src={userData.img}
               width={400}
               height={400}
               alt="record"
-              className="w-full h-full object-cover border-4 rounded-lg border-primarycolor"
+              className="w-full h-full object-cover border-4 rounded-lg border-primarycolor filter blur-lg "
             />
           </div>
         </div>
@@ -111,48 +114,50 @@ function RecordId({ params }) {
           <div className=" pt-14">
             <p className="text-sm">Fullname</p>
             <h1 className="text-gray-500 text-lg font-bold">
-              {userData.userInfo.fullname}
+              {userData?.userInfo?.fullname}
             </h1>
           </div>
 
           <div className="flex justify-between mt-4">
             <div>
               <p className="text-sm">Gender</p>
-              <h1 className="text-gray-500 text-lg font-bold">Male</h1>
+              <h1 className="text-gray-500 text-lg font-bold">
+                {userData?.userInfo?.gender}
+              </h1>
             </div>
 
             <div>
               <p className="text-sm">Age</p>
-              <h1 className="text-gray-500 text-lg font-bold">22</h1>
+              <h1 className="text-gray-500 text-lg font-bold">**</h1>
             </div>
 
             <div>
               <p className="text-sm">Marital Status</p>
-              <h1 className="text-gray-500 text-lg font-bold">Married</h1>
+              <h1 className="text-gray-500 text-lg font-bold">**</h1>
             </div>
           </div>
 
           <div className="flex gap-8 mt-4">
             <div>
               <p className="text-sm">State of Origin</p>
-              <h1 className="text-gray-500 text-lg font-bold">Lagos</h1>
+              <h1 className="text-gray-500 text-lg font-bold">*****</h1>
             </div>
 
             <div>
               <p className="text-sm">Phone Number</p>
-              <h1 className="text-gray-500 text-lg font-bold">09034980910</h1>
+              <h1 className="text-gray-500 text-lg font-bold">*******0910</h1>
             </div>
           </div>
 
           <div className="flex justify-between mt-4">
             <div>
               <p className="text-sm">Location</p>
-              <h1 className="text-gray-500 text-lg font-bold">Akute</h1>
+              <h1 className="text-gray-500 text-lg font-bold">*******</h1>
             </div>
 
             <div>
               <p className="text-sm">City</p>
-              <h1 className="text-gray-500 text-lg font-bold">Denro</h1>
+              <h1 className="text-gray-500 text-lg font-bold">*****</h1>
             </div>
 
             <div>
@@ -165,7 +170,7 @@ function RecordId({ params }) {
             <div>
               <p className="text-sm">Email Address</p>
               <h1 className="text-gray-500 text-lg font-bold">
-                sirhmvfx@gmail.com
+                {userData?.userInfo?.email}
               </h1>
             </div>
           </div>
