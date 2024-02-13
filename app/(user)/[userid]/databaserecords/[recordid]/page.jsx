@@ -98,7 +98,7 @@ function RecordId({ params }) {
           </div>
           <div className="w-2/4 bg-white h-3/4 absolute -bottom-20 rounded-lg right-0 left-0 mx-auto ">
             <div className="w-full h-full relative">
-              <div className="w-full h-full absolute bg-[#0000005e] backdrop-blur-lg rounded-lg"></div>
+              <div className="w-full h-full absolute bg-[#ffffff5e] backdrop-blur-sm border-4 rounded-lg border-primarycolor"></div>
               <Image
                 src={userData.img}
                 width={400}
