@@ -68,6 +68,7 @@ function Discover({ params }) {
               img={d.image}
               incidentDetails={d.incidentDetails}
               time={d.time}
+              key={d.who}
             />
           ))}
           <div className="p-10">1</div>

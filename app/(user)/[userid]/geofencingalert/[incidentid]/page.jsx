@@ -29,7 +29,7 @@ function IncidentId({ params }) {
     };
 
     getData();
-  }, []);
+  }, [incident]);
 
   return (
     <>
@@ -72,7 +72,7 @@ function IncidentId({ params }) {
             </div>
 
             <div>
-              <p className="text-sm">And it's </p>
+              <p className="text-sm">And it&apos;s </p>
               <h1 className="text-gray-400 text-lg font-bold">
                 {incidentData?.incidentDetails?.condition}
               </h1>

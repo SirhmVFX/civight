@@ -26,7 +26,7 @@ function ProfileHeader({ userId }) {
     };
 
     fetchDetails();
-  }, []);
+  }, [router]);
 
   return (
     <>

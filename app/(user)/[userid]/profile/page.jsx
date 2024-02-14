@@ -28,7 +28,7 @@ function Profile({ params }) {
     };
 
     fetchDetails();
-  }, []);
+  }, [router]);
   return (
     <>
       <section className=" w-full h-screen p-8">

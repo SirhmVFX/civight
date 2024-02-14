@@ -26,7 +26,7 @@ function Navbar() {
     };
 
     fetchDetails();
-  }, []);
+  }, [router]);
   return (
     <>
       <div className="w-full bg-primarycolor p-8  bottom-0 fixed">

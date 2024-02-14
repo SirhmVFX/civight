@@ -4,6 +4,7 @@ import Image from "next/image";
 import { db } from "@/app/firebase/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import PrimaryButton from "@/components/PrimaryButton";
 
 function RecordId({ params }) {
   const civilian = params.recordid;
@@ -29,7 +30,7 @@ function RecordId({ params }) {
     };
 
     getData();
-  }, []);
+  }, [civilian]);
 
   return (
     <>
@@ -192,6 +193,8 @@ function RecordId({ params }) {
               </h1>
             </div>
           </div>
+
+          <PrimaryButton label={"View this user details"} />
         </div>
 
         <div className="p-20">1</div>
