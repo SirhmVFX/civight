@@ -20,7 +20,7 @@ import {
 
 function AnonymousTip() {
   const router = useRouter();
-  const [annonReport, setanonReport] = useState({
+  const [incidentDetails, setIncidentDetails] = useState({
     city: "",
     location: "",
     condition: "",
@@ -77,10 +77,11 @@ function AnonymousTip() {
 
     try {
       await addDoc(collection(db, "incidents"), {
-        annonReport,
+        incidentDetails,
         image,
         who: "Anon" + new Date().getTime(),
         timeStamp: serverTimestamp(),
+        time: new Date().getTime(),
       });
 
       router.push(`anonsent`);
@@ -173,9 +174,12 @@ function AnonymousTip() {
                 <input
                   type="text"
                   placeholder="Enter city name"
-                  value={annonReport.city}
+                  value={incidentDetails.city}
                   onChange={(e) =>
-                    setanonReport({ ...annonReport, city: e.target.value })
+                    setIncidentDetails({
+                      ...incidentDetails,
+                      city: e.target.value,
+                    })
                   }
                   className="bg-transparent w-full outline-none"
                 />
@@ -190,9 +194,12 @@ function AnonymousTip() {
                 <input
                   type="text"
                   placeholder="Little area description"
-                  value={annonReport.location}
+                  value={incidentDetails.location}
                   onChange={(e) =>
-                    setanonReport({ ...annonReport, location: e.target.value })
+                    setIncidentDetails({
+                      ...incidentDetails,
+                      location: e.target.value,
+                    })
                   }
                   className="bg-transparent w-full outline-none"
                 />
@@ -208,7 +215,10 @@ function AnonymousTip() {
                   name="condition"
                   id=""
                   onChange={(e) =>
-                    setanonReport({ ...annonReport, condition: e.target.value })
+                    setIncidentDetails({
+                      ...incidentDetails,
+                      condition: e.target.value,
+                    })
                   }
                   className="bg-transparent outline-none"
                 >
@@ -233,9 +243,12 @@ function AnonymousTip() {
                   id=""
                   cols="30"
                   rows="10"
-                  value={annonReport.desc}
+                  value={incidentDetails.desc}
                   onChange={(e) =>
-                    setanonReport({ ...annonReport, desc: e.target.value })
+                    setIncidentDetails({
+                      ...incidentDetails,
+                      desc: e.target.value,
+                    })
                   }
                   placeholder="Additional information"
                   className="bg-transparent w-full outline-none"

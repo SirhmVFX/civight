@@ -50,7 +50,7 @@ function IncidentId({ params }) {
             <div>
               <p className="text-sm">In the City of</p>
               <h1 className="text-gray-500 text-lg font-bold">
-                {incidentData.incidentDetails.city}
+                {incidentData?.incidentDetails?.city}
               </h1>
             </div>
           </div>
@@ -58,7 +58,7 @@ function IncidentId({ params }) {
           <div className="flex gap-8 mt-4">
             <div>
               <h1 className="text-gray-500 text-lg font-bold">
-                {incidentData.incidentDetails.desc}
+                {incidentData?.incidentDetails?.desc}
               </h1>
             </div>
           </div>
@@ -67,14 +67,14 @@ function IncidentId({ params }) {
             <div>
               <p className="text-sm">At</p>
               <h1 className="text-gray-400 text-lg font-bold">
-                {incidentData.incidentDetails.location}
+                {incidentData?.incidentDetails?.location}
               </h1>
             </div>
 
             <div>
               <p className="text-sm">And it's </p>
               <h1 className="text-gray-400 text-lg font-bold">
-                {incidentData.incidentDetails.condition}
+                {incidentData?.incidentDetails?.condition}
               </h1>
             </div>
           </div>
