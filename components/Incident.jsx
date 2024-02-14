@@ -1,9 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 
-function Incident({ img, incidentDetails, time }) {
+function Incident({ link, img, incidentDetails }) {
   return (
     <>
-      <div className="flex justify-between my-8">
+      <Link
+        href={`geofencingalert/${link}`}
+        className="flex justify-between my-8"
+      >
         <div className="flex gap-2 items-center">
           <div className="w-[50px] h-[50px]">
             <Image
@@ -25,7 +29,7 @@ function Incident({ img, incidentDetails, time }) {
         <p className="text-[11px] text-gray-500">
           {incidentDetails?.condition}
         </p>
-      </div>
+      </Link>
     </>
   );
 }

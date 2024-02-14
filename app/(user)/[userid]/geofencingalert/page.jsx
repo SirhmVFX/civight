@@ -50,6 +50,8 @@ function GeofencingAlert() {
               img={d.image}
               incidentDetails={d.incidentDetails}
               time={d.time}
+              key={d.who}
+              link={d.who}
             />
           ))}
         </div>
