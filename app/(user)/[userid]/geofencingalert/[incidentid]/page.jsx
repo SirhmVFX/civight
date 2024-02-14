@@ -65,7 +65,7 @@ function IncidentId({ params }) {
 
           <div className="flex gap-8 mt-4">
             <div>
-              <p className="text-sm">At</p>
+              <p className="text-sm">At precisely</p>
               <h1 className="text-gray-400 text-lg font-bold">
                 {incidentData?.incidentDetails?.location}
               </h1>
