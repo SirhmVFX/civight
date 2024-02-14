@@ -19,11 +19,13 @@ function NotificationComponent({ link, img, incidentDetails }) {
             <div>
               <h1 className="text-sm font-bold text-gray-400">
                 {incidentDetails?.fullname
-                  ? `${incidentDetails.fullname} reported an event at ${incidentDetails.city}`
-                  : "Anon reported an event at Mile 12"}
+                  ? `${
+                      incidentDetails.fullname.split(" ")[0]
+                    } reported an event at ${incidentDetails.city}`
+                  : `Anon reported an event at ${incidentDetails.city}`}
               </h1>
-              <div className="flex gap-3">
-                <p className="text-[12px]">People fighting</p>
+              <div className="">
+                <p className="text-[12px]">{incidentDetails?.desc}</p>
                 <p className="text-[12px] text-gray-400">at 14:58</p>
               </div>
             </div>
