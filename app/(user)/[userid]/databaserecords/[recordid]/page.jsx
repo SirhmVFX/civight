@@ -145,7 +145,10 @@ function RecordId({ params }) {
 
             <div>
               <p className="text-sm">Phone Number</p>
-              <h1 className="text-gray-500 text-lg font-bold">*******0910</h1>
+              <h1 className="text-gray-500 text-lg font-bold">
+                {userData?.userInfo?.phone &&
+                  `*********${userData.userInfo.phone.slice(-4)}`}
+              </h1>
             </div>
           </div>
 
