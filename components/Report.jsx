@@ -1,6 +1,16 @@
 import Image from "next/image";
 
 function Report({ img, incidentDetails, time }) {
+  const timestamp = time; // Assuming this is your timestamp
+  const date = new Date(timestamp); // Convert timestamp to Date object
+
+  // Extract hours and minutes from the Date object
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+
+  // Combine hours and minutes into the time string
+  const formattedTime = `${hours}:${minutes}`;
+
   return (
     <>
       <div className="my-8 flex justify-between">
@@ -27,7 +37,7 @@ function Report({ img, incidentDetails, time }) {
           </div>
         </div>
 
-        <p className="text-gray-400 text-[13px]">{time}</p>
+        <p className="text-gray-400 text-[13px]">{formattedTime}</p>
       </div>
     </>
   );

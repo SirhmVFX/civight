@@ -9,19 +9,19 @@ function IncidentId({ params }) {
   const incident = params.incidentid;
   console.log(incident);
 
-  const [userData, setUserdata] = useState("");
+  const [incidentData, setIncidentData] = useState("");
 
   useEffect(() => {
     const getData = async () => {
       try {
         const q = query(
-          collection(db, "incident"),
-          where("uid", "==", incident)
+          collection(db, "incidents"),
+          where("who", "==", incident)
         );
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           console.log(doc.id, " => ", doc.data());
-          setUserdata(doc.data());
+          setIncidentData(doc.data());
         });
       } catch (error) {
         console.log(error);
@@ -36,7 +36,7 @@ function IncidentId({ params }) {
       <section className="w-full h-screen">
         <div className="w-full h-2/4 bg-black">
           <Image
-            src={"/images/mil.jpg"}
+            src={incidentData.image}
             width={1000}
             height={1000}
             alt="lk"
@@ -49,26 +49,33 @@ function IncidentId({ params }) {
           <div className="flex gap-8 mt-4">
             <div>
               <p className="text-sm">In the City of</p>
-              <h1 className="text-gray-500 text-lg font-bold">*****</h1>
+              <h1 className="text-gray-500 text-lg font-bold">
+                {incidentData.incidentDetails.city}
+              </h1>
             </div>
           </div>
 
           <div className="flex gap-8 mt-4">
             <div>
-              <p className="text-sm">Incident</p>
-              <h1 className="text-gray-500 text-lg font-bold">*****</h1>
+              <h1 className="text-gray-500 text-lg font-bold">
+                {incidentData.incidentDetails.desc}
+              </h1>
             </div>
           </div>
 
           <div className="flex gap-8 mt-4">
             <div>
               <p className="text-sm">At</p>
-              <h1 className="text-gray-500 text-lg font-bold">*****</h1>
+              <h1 className="text-gray-400 text-lg font-bold">
+                {incidentData.incidentDetails.location}
+              </h1>
             </div>
 
             <div>
               <p className="text-sm">And it's </p>
-              <h1 className="text-gray-500 text-lg font-bold">*****</h1>
+              <h1 className="text-gray-400 text-lg font-bold">
+                {incidentData.incidentDetails.condition}
+              </h1>
             </div>
           </div>
         </div>

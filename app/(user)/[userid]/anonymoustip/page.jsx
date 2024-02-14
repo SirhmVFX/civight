@@ -79,7 +79,7 @@ function AnonymousTip() {
       await addDoc(collection(db, "incidents"), {
         annonReport,
         image,
-        who: "Anon",
+        who: "Anon" + new Date().getTime(),
         timeStamp: serverTimestamp(),
       });
 

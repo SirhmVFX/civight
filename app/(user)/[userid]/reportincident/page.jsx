@@ -81,7 +81,7 @@ function ReportIncident({ params }) {
       await addDoc(collection(db, "incidents"), {
         incidentDetails,
         image,
-        who: userId,
+        who: "user" + new Date().getTime(),
         timeStamp: serverTimestamp(),
         time: new Date().getTime(),
       });
