@@ -2,6 +2,7 @@ import Panic from "@/components/Panic";
 import ProfileHeader from "@/components/Profileheader";
 import { panicoptions } from "@/data/data";
 import Image from "next/image";
+import loadinggif from "@/public/images/loading.gif";
 
 function PanicButton({ params }) {
   const userId = params.userid;
@@ -16,7 +17,7 @@ function PanicButton({ params }) {
           <div className="border w-[250px] h-[250px] rounded-full flex flex-col items-center justify-center">
             <div className="w-full h-1/4">
               <Image
-                src={"/images/loading.gif"}
+                src={loadinggif}
                 width={1200}
                 height={1200}
                 alt="loadin"

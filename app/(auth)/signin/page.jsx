@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/app/firebase/config";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 function SignIn() {
   const [user, setUser] = useState({
@@ -18,6 +19,11 @@ function SignIn() {
   const [error, setError] = useState(false);
   const [clicked, setClicked] = useState(false);
   const router = useRouter();
+  const [showpassword, setshowPassword] = useState(false);
+
+  const handleShow = () => {
+    setshowPassword(!showpassword);
+  };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -76,7 +82,7 @@ function SignIn() {
 
           <form>
             <div className="py-4">
-              <label htmlFor="">Email of CVR ID *</label>
+              <label htmlFor="">Email *</label>
               <div className="flex gap-1 items-center p-4 rounded-full border bg-gray-100">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +106,7 @@ function SignIn() {
                 </svg>
                 <input
                   type="text"
-                  placeholder="Enter your email or CVR ID"
+                  placeholder="Enter your email"
                   value={user.emailOrId}
                   onChange={(e) =>
                     setUser({ ...user, emailOrId: e.target.value })
@@ -134,7 +140,7 @@ function SignIn() {
                   />
                 </svg>
                 <input
-                  type="password"
+                  type={showpassword ? "text" : "password"}
                   placeholder="Enter your password"
                   value={user.password}
                   onChange={(e) =>
@@ -142,6 +148,9 @@ function SignIn() {
                   }
                   className="bg-transparent w-full outline-none"
                 />
+                <div onClick={handleShow}>
+                  {showpassword ? <FaEye /> : <FaEyeSlash />}
+                </div>
               </div>
             </div>
 

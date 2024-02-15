@@ -5,6 +5,7 @@ import { db } from "@/app/firebase/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import PrimaryButton from "@/components/PrimaryButton";
+import profileimg from "@/public/images/profileimg.png";
 
 function RecordId({ params }) {
   const civilian = params.recordid;
@@ -39,7 +40,7 @@ function RecordId({ params }) {
           <div className="flex justify-between mb-4">
             <div className="flex items-center gap-2">
               <Image
-                src={"/images/profileimg.png"}
+                src={profileimg}
                 width={50}
                 height={50}
                 alt="profile image"

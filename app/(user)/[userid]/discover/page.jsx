@@ -10,6 +10,8 @@ import { db } from "@/app/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import { FaRegCirclePlay } from "react-icons/fa6";
 
+import giff from "@/public/images/sec.gif";
+
 function Discover({ params }) {
   const cvrId = params.userid;
   const [data, setData] = useState([]);
@@ -45,7 +47,7 @@ function Discover({ params }) {
             </div>
 
             <Image
-              src={"/images/sec.gif"}
+              src={giff}
               width={1000}
               height={1000}
               alt="sec"

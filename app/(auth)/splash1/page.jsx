@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import img1 from "@/public/images/img1.png";
+
 function Splash1() {
   return (
     <>
@@ -15,7 +17,7 @@ function Splash1() {
               Stay Safe and Secured everywhere you go
             </p>
           </div>
-          <Image src={"/images/img1.png"} width={550} height={550} alt="img1" />
+          <Image src={img1} width={550} height={550} alt="img1" />
           <div className="px-4">
             <Link href={"/splash2"} className="button">
               Next

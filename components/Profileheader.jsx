@@ -6,6 +6,8 @@ import { db } from "@/app/firebase/config";
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 
+import userimg from "@/public/images/profile.png";
+
 function ProfileHeader({ userId }) {
   const router = useRouter();
   const [user, setUser] = useState(null);
@@ -33,7 +35,7 @@ function ProfileHeader({ userId }) {
       <div className="flex justify-between mb-4">
         <div className="flex items-center gap-2">
           <Image
-            src={"/images/profileimg.png"}
+            src={userimg}
             width={50}
             height={50}
             alt="profile image"

@@ -1,6 +1,9 @@
 import PrimaryButton from "@/components/PrimaryButton";
 import ProfileHeader from "@/components/Profileheader";
 import Image from "next/image";
+import location2 from "@/public/images/location2.png";
+
+import profileimggg from "@/public/images/profile.png";
 
 function ShareLocation() {
   return (
@@ -11,7 +14,7 @@ function ShareLocation() {
             <ProfileHeader />
           </div>
           <Image
-            src={"/images/location2.png"}
+            src={location2}
             width={1100}
             height={1100}
             alt="location"
@@ -24,12 +27,7 @@ function ShareLocation() {
 
           <div>
             <div className="flex items-center gap-2 py-6">
-              <Image
-                src={"/images/profile.png"}
-                width={80}
-                height={80}
-                alt="prof"
-              />
+              <Image src={profileimggg} width={80} height={80} alt="prof" />
 
               <div>
                 <h1 className="text-lg font-bold">Fullstack Mechanic</h1>

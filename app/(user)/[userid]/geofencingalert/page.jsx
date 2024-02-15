@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { db } from "@/app/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
+import map from "@/public/images/map.png";
 
 function GeofencingAlert() {
   const [data, setData] = useState([]);
@@ -34,7 +35,7 @@ function GeofencingAlert() {
       <section className="w-full h-screen relative">
         <div className="w-full h-2/4">
           <Image
-            src={"/images/map.png"}
+            src={map}
             width={1100}
             height={1000}
             alt="map"
