@@ -48,7 +48,7 @@ function Discover({ params }) {
 
             <Image
               src={
-                "/images/sec.gifhttps://firebasestorage.googleapis.com/v0/b/civiright.appspot.com/o/sec.gif?alt=media&token=5030dd8d-af35-46f2-97ef-a8f95fcd0e39"
+                "https://firebasestorage.googleapis.com/v0/b/civiright.appspot.com/o/sec.gif?alt=media&token=5030dd8d-af35-46f2-97ef-a8f95fcd0e39"
               }
               width={1000}
               height={1000}
