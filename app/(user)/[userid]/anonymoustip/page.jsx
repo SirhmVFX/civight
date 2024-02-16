@@ -18,7 +18,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-import profileimg from "@/public/images/profileimg.png";
+import imggggg from "@/public/images/profile.png";
 
 function AnonymousTip() {
   const router = useRouter();
@@ -100,7 +100,7 @@ function AnonymousTip() {
           <div className="flex justify-between mb-4">
             <div className="flex items-center gap-2">
               <Image
-                src={profileimg}
+                src={imggggg}
                 width={50}
                 height={50}
                 alt="profile image"

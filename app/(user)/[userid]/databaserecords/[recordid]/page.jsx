@@ -5,7 +5,7 @@ import { db } from "@/app/firebase/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import PrimaryButton from "@/components/PrimaryButton";
-import profileimg from "@/public/images/profileimg.png";
+import profileimg from "@/public/images/profile.png";
 
 function RecordId({ params }) {
   const civilian = params.recordid;

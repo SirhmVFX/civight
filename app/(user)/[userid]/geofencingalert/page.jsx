@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { db } from "@/app/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
-import map from "@/public/images/map.png";
+import map from "@/public/images/location2.png";
 
 function GeofencingAlert() {
   const [data, setData] = useState([]);
