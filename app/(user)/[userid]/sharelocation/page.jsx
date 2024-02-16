@@ -44,6 +44,17 @@ function ShareLocation() {
         url: "https://trycivight-v1.netlify.app/",
         title: "Civight",
       });
+    } else {
+      navigator.clipboard.writeText({
+        text:
+          (user?.userInfo?.fullname,
+          user?.cvrId,
+          user?.userInfo?.cityResident,
+          user?.userInfo?.stateResident,
+          user?.userInfo?.country),
+        url: "https://trycivight-v1.netlify.app/",
+        title: "Civight",
+      });
     }
   };
   return (

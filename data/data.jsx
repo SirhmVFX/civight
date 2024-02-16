@@ -149,7 +149,7 @@ export const features = [
   {
     id: 6,
     name: "Emergency Response",
-    link: "#",
+    link: "v2",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@ export const features = [
   {
     id: 7,
     name: "Educational Resources",
-    link: "#",
+    link: "v2",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,6 @@
 "use client";
 import ProfileHeader from "@/components/Profileheader";
 import Record from "@/components/Record";
-import Image from "next/image";
 
 import { useState, useEffect } from "react";
 import { db } from "@/app/firebase/config";
@@ -63,7 +62,7 @@ function DatabaseRecords() {
                 id=""
                 className="bg-transparent outline-none w-full"
               >
-                <option value="nill">filter</option>
+                <option value="">All</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>

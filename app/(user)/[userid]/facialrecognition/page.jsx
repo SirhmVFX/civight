@@ -1,7 +1,13 @@
+"use client";
 import SecondaryButton from "@/components/SecondaryButton";
 import { CiCamera } from "react-icons/ci";
+import { useRouter } from "next/navigation";
 
 function FacialRecognition() {
+  const router = useRouter();
+  const rou = () => {
+    router.push(`v2`);
+  };
   return (
     <>
       <section className="w-full h-screen p-8">
@@ -16,7 +22,11 @@ function FacialRecognition() {
           </div>
 
           <div className="mt-28 w-full">
-            <SecondaryButton label={"Scan"} />
+            <SecondaryButton
+              label={"Scan"}
+              color={"bg-secondarycolor"}
+              onclick={rou}
+            />
           </div>
         </div>
       </section>

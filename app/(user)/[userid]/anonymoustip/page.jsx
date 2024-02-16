@@ -10,6 +10,7 @@ import {
   doc,
   serverTimestamp,
   setDoc,
+  getDoc,
 } from "firebase/firestore";
 import {
   getStorage,
@@ -22,6 +23,25 @@ import imggggg from "@/public/images/profile.png";
 
 function AnonymousTip() {
   const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const docRef = doc(db, "users", currentUser.userInfo.email);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const user = docSnap.data();
+        console.log(user);
+        setUser(user);
+      } else {
+        router.push("/signin");
+      }
+    };
+
+    fetchDetails();
+  }, [router]);
   const [incidentDetails, setIncidentDetails] = useState({
     city: "",
     location: "",
@@ -108,9 +128,9 @@ function AnonymousTip() {
               />
               <div>
                 <h1 className="font-bold text-primarycolor">
-                  Hi👋, FullStack Mechanic
+                  {user?.userInfo?.fullname}
                 </h1>
-                <p className="text-gray-300 text-sm">CVR102946128848276</p>
+                <p className="text-gray-300 text-sm">{user?.cvrId}</p>
               </div>
             </div>
 
