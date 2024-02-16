@@ -47,7 +47,7 @@ function Discover({ params }) {
             </div>
 
             <Image
-              src={giff}
+              src={"/images/sec.gif"}
               width={1000}
               height={1000}
               alt="sec"

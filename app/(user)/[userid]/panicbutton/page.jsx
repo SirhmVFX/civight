@@ -17,7 +17,7 @@ function PanicButton({ params }) {
           <div className="border w-[250px] h-[250px] rounded-full flex flex-col items-center justify-center">
             <div className="w-full h-1/4">
               <Image
-                src={loadinggif}
+                src={"/images/loading.gif"}
                 width={1200}
                 height={1200}
                 alt="loadin"
