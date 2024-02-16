@@ -29,7 +29,7 @@ function Navbar() {
   }, [router]);
   return (
     <>
-      <div className="w-full bg-primarycolor p-8  bottom-0 fixed">
+      <div className="w-full bg-primarycolor p-8  bottom-0 fixed z-50">
         <div className="flex items-center justify-between px-4 relative w-full">
           <Link
             href={`/${user?.cvrId}/discover`}

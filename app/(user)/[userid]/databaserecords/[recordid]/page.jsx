@@ -12,6 +12,10 @@ function RecordId({ params }) {
   console.log(civilian);
 
   const [userData, setUserdata] = useState("");
+  const [popup, setPopup] = useState(false);
+  const popjs = () => {
+    setPopup(!popup);
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -35,7 +39,21 @@ function RecordId({ params }) {
 
   return (
     <>
-      <section className="w-full h-screen">
+      <section className="w-full h-full ">
+        <div className="relative">
+          {popup ? (
+            <div className="absolute bg-[#0000007a] w-full h-screen z-50 p-10 backdrop-blur-md flex justify-center items-center">
+              <div className="bg-[#EDFCD0] p-8 rounded-lg">
+                <p>You are not allow to view this users information...</p>
+                <p className="text-red-500 font-bold mt-4" onClick={popjs}>
+                  Cancel
+                </p>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
         <div className="bg-secondarycolor h-1/3 relative w-full p-8  ">
           <div className="flex justify-between mb-4">
             <div className="flex items-center gap-2">
@@ -195,7 +213,13 @@ function RecordId({ params }) {
             </div>
           </div>
 
-          <PrimaryButton label={"View this user details"} />
+          <div className="mt-8">
+            <PrimaryButton
+              label={"View this user details"}
+              color={"bg-primarycolor"}
+              onclick={popjs}
+            />
+          </div>
         </div>
 
         <div className="p-20">1</div>
