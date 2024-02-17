@@ -10,7 +10,7 @@ import { db } from "@/app/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import { FaRegCirclePlay } from "react-icons/fa6";
 
-import giff from "@/public/images/sec.gif";
+import giff from "@/public/sec.gif";
 
 function Discover({ params }) {
   const cvrId = params.userid;
