@@ -18,7 +18,7 @@ function PanicButton({ params }) {
             <div className="w-full h-1/4">
               <Image
                 src={
-                  "https://firebasestorage.googleapis.com/v0/b/civiright.appspot.com/o/loading.gif?alt=media&token=f8b478c0-0664-4cab-bf36-f31d97ac78fd"
+                  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.behance.net%2Fgallery%2F31234507%2FOpen-source-Loading-GIF-Icons-Vol-1&psig=AOvVaw1r_X65Q5IG-gk5-yHET3y9&ust=1708254961547000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLiRl-OfsoQDFQAAAAAdAAAAABAE"
                 }
                 width={1200}
                 height={1200}
