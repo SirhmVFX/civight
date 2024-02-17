@@ -17,7 +17,9 @@ function PanicButton({ params }) {
           <div className="border w-[250px] h-[250px] rounded-full flex flex-col items-center justify-center">
             <div className="w-full h-1/4">
               <Image
-                src={`https://firebasestorage.googleapis.com/v0/b/civiright.appspot.com/o/loading.gif?alt=media&token=f8b478c0-0664-4cab-bf36-f31d97ac78fd`}
+                src={
+                  "https://firebasestorage.googleapis.com/v0/b/civiright.appspot.com/o/loading.gif?alt=media&token=f8b478c0-0664-4cab-bf36-f31d97ac78fd"
+                }
                 width={1200}
                 height={1200}
                 alt="loadin"
