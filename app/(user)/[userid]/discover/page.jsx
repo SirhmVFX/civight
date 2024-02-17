@@ -10,7 +10,7 @@ import { db } from "@/app/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import { FaRegCirclePlay } from "react-icons/fa6";
 
-import giff from "@/public/sec.gif";
+import giff from "@/public/images/Untitled.png";
 
 function Discover({ params }) {
   const cvrId = params.userid;
@@ -42,14 +42,12 @@ function Discover({ params }) {
           <ProfileHeader userId={cvrId} />
 
           <div className="bg-primarycolor w-full h-[150px] rounded-2xl relative">
-            <div className="w-full h-full absolute flex justify-center items-center z-50">
+            {/* <div className="w-full h-full absolute flex justify-center items-center z-50">
               <FaRegCirclePlay className="text-3xl  bg-primarycolor p-1 rounded-full" />
-            </div>
+            </div> */}
 
             <Image
-              src={
-                "https://firebasestorage.googleapis.com/v0/b/civiright.appspot.com/o/sec.gif?alt=media&token=5030dd8d-af35-46f2-97ef-a8f95fcd0e39"
-              }
+              src={giff}
               width={1000}
               height={1000}
               alt="sec"
