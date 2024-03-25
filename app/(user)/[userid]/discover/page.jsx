@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { db } from "@/app/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import { FaRegCirclePlay } from "react-icons/fa6";
+import placeholder from "@/public/images/images.png";
 
 import giff from "@/public/images/Untitled.png";
 
@@ -65,14 +66,17 @@ function Discover({ params }) {
         <div className="bg-secondarycolor p-8">
           <h1 className="text-white">Recent Reports</h1>
 
-          {data.slice(-5).map((d) => (
-            <Report
-              img={d.image}
-              incidentDetails={d.incidentDetails}
-              time={d.time}
-              key={d.who}
-            />
-          ))}
+          {data &&
+            data
+              .slice(-5)
+              .map((d) => (
+                <Report
+                  img={d.image ? d.image : placeholder}
+                  incidentDetails={d.incidentDetails}
+                  time={d.time}
+                  key={d.who}
+                />
+              ))}
           <div className="p-10">1</div>
         </div>
       </section>

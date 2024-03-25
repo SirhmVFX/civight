@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { db } from "@/app/firebase/config";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import placeholder from "@/public/images/images.png";
 
 function IncidentId({ params }) {
   const incident = params.incidentid;
@@ -36,7 +37,7 @@ function IncidentId({ params }) {
       <section className="w-full h-screen">
         <div className="w-full h-2/4 bg-black">
           <Image
-            src={incidentData.image}
+            src={incidentData.image ? incidentData.image : placeholder}
             width={1000}
             height={1000}
             alt="lk"

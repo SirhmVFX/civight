@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { db } from "@/app/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import map from "@/public/images/location2.png";
+import placeholder from "@/public/images/images.png";
 
 function GeofencingAlert() {
   const [data, setData] = useState([]);
@@ -48,7 +49,7 @@ function GeofencingAlert() {
 
           {data.slice(-4).map((d) => (
             <Incident
-              img={d.image}
+              img={d.image ? d.image : placeholder}
               incidentDetails={d.incidentDetails}
               time={d.time}
               key={d.who}
